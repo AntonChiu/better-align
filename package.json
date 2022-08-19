@@ -3,7 +3,7 @@
     "displayName": "Better Align #",
     "description": "Multi languages supported version of Better Align",
     "version": "1.2.0",
-    "icon": "https://github.com/AntonChiu/better-align/blob/master/images/icon.png",
+    "icon": "images/icon.png",
     "repository": "https://github.com/AntonChiu/better-align",
     "publisher": "atch",
     "engines": {
