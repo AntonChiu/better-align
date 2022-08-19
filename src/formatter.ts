@@ -150,9 +150,85 @@ export default class Formatter {
     };
   }
 
+  protected is_single_line_comment(line:number, pos:number):boolean
+  {
+    let textline = this.editor.document.lineAt( line );
+    let languageID : string  = this.editor.document.languageId;
+    let text = textline.text;
+
+    // cases of specific languages
+    if ((languageID == "python") || (languageID == "ruby"))
+      return text.charAt(pos) == "#";
+    
+    // default case
+    if (text.charAt(pos) == "/"
+      && text.charAt(pos + 1) == "/"
+      && (pos > 0 ? text.charAt(pos - 1) : "") != ":") // only `//` but not `://`
+      return true;
+    else
+      return false;
+  }
+
+  protected is_block_comment_start(line:number, pos:number):boolean 
+  {
+    let textline = this.editor.document.lineAt( line );
+    let languageID : string  = this.editor.document.languageId;
+    let text = textline.text;
+
+    // cases of specific languages
+    if (languageID == "ruby")
+    {
+      if (text.substring(pos,pos+6) == "=begin")
+        return true;
+      return false;
+    }
+
+    // default case
+    if (text.charAt(pos) == "/" && text.charAt(pos+1) == "*")
+      return true;
+    else
+      return false;
+  }
+
+  protected is_block_comment_end(line:number, pos:number):boolean 
+  {
+    let textline = this.editor.document.lineAt( line );
+    let languageID : string  = this.editor.document.languageId;
+    let text = textline.text;
+
+    // cases of specific languages
+    if (languageID == "ruby")
+    {
+      if (text.substring(pos,pos+4) == "=end")
+        return true;
+      return false;
+    }
+
+    // default case
+    if (text.charAt(pos) == "*" && text.charAt(pos+1) == "/")
+      return true;
+    else
+      return false;
+  }
+
+  protected block_cmmnt_start_idtf_len(lang : string) : number 
+  {
+    if(lang == "ruby")
+      return "=begin".length;
+    return "*/".length;
+  }
+
+  protected block_cmmnt_end_idtf_len(lang:string) : number
+  {
+    if(lang == "ruby")
+      return "=end".length;
+    return "*/".length;
+  }
+
   protected tokenize( line:number ):LineInfo {
     let textline = this.editor.document.lineAt( line );
     let text = textline.text;
+    let languageID : string  = this.editor.document.languageId;
     let pos  = 0;
     let lt:LineInfo = {
         line           : textline
@@ -182,10 +258,9 @@ export default class Formatter {
         currTokenType = TokenType.Block;
       } else if ( char == "}" || char == ")" || char == "]" ) {
         currTokenType = TokenType.EndOfBlock;
-      } else if ( char == "/" && (
-          (next == "/" && (pos > 0 ? text.charAt(pos-1) : "") != ":") // only `//` but not `://`
-        || next == "*"
-      ) ) {
+      } else if (this.is_single_line_comment(line,pos)) {
+        currTokenType = TokenType.Comment;
+      } else if ( this.is_block_comment_start(line,pos)) {
         currTokenType = TokenType.Comment;
       } else if ( char == ":" && next != ":" ) {
         currTokenType = TokenType.Colon;
@@ -214,7 +289,7 @@ export default class Formatter {
         if ( tokenStartPos != -1 ) {
           lt.tokens.push({
               type : lastTokenType
-            , text : textline.text.substr(tokenStartPos, pos - tokenStartPos)
+            , text : textline.text.substring(tokenStartPos, pos)
           });
         }
 
@@ -268,21 +343,23 @@ export default class Formatter {
         }
       }
 
-      if ( char == "/" ) {
-        // Skip to end if we encounter single line comment
-        if ( next == "/" ) {
-          pos = text.length;
-        } else if ( next == "*" ) {
-          ++pos;
-          while ( pos < text.length ) {
-            if ( text.charAt(pos) == "*" && text.charAt(pos+1) == "/" ) {
-              ++pos;
-              currTokenType = TokenType.Word;
-              break;
-            }
-            ++pos;
+      // Skip to end if we encounter single line comment
+      if(this.is_single_line_comment(line,pos))
+      {
+        pos = text.length;
+      }
+
+      if (this.is_block_comment_start(line,pos)) { 
+          pos += this.block_cmmnt_start_idtf_len(languageID);
+        while (pos < text.length) {
+          if (this.is_block_comment_end(line,pos)) {
+            pos += this.block_cmmnt_end_idtf_len(languageID);
+            currTokenType = TokenType.Word;
+            break;
           }
+          ++pos;
         }
+        --pos;
       }
 
       pos += nextSeek;
@@ -291,7 +368,7 @@ export default class Formatter {
     if ( tokenStartPos != -1 ) {
       lt.tokens.push({
           type : lastTokenType
-        , text : textline.text.substr(tokenStartPos, pos-tokenStartPos)
+        , text : textline.text.substring(tokenStartPos, pos)
       });
     }
 
