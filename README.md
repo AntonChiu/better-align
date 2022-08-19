@@ -32,6 +32,9 @@ Align within selection:
 
 ![Select a wide range and align them all](images/3.gif)
 
+Supports for (`#`) in Python
+
+![Python support](images/5.gif)
 ## Shortcuts
 
 There's no built-in shortcut comes with the extension, you have to add shotcuts by yourself:

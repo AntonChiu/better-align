@@ -129,7 +129,7 @@ export default class Formatter {
 
   protected getConfig() {
 
-    let defaultConfig = vscode.workspace.getConfiguration("alignment");
+    let defaultConfig = vscode.workspace.getConfiguration("alignmenthash");
     let langConfig:Object = null;
 
     try {

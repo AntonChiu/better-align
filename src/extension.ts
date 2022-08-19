@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
   var formatter = new Formatter();
 
   context.subscriptions.push(
-    vscode.commands.registerTextEditorCommand( "wwm.aligncode", (editor)=>{
+    vscode.commands.registerTextEditorCommand( "atch.aligncode", (editor)=>{
       formatter.process( editor );
     } )
   );

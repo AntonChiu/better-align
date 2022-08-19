@@ -30,7 +30,7 @@
 
 ## What's New
 - Always align with assignment operator if it's presented.
-- User can stop better-align from modifying the indentation ( specified in settings : `alignment.indentBase` )
+- User can stop better-align from modifying the indentation ( specified in settings : `alignmenthash.indentBase` )
 - Allow space to the sibling token ( check out README.md to know how to enable this mode ):
 
 ```
