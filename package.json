@@ -2,7 +2,7 @@
     "name": "better-align-hash",
     "displayName": "Better Align #",
     "description": "Multi languages supported version of Better Align",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "icon": "images/icon.png",
     "repository": "https://github.com/AntonChiu/better-align",
     "publisher": "atch",
@@ -47,7 +47,7 @@
                             1,
                             1
                         ],
-                        "arrow":[
+                        "arrow": [
                             1,
                             1
                         ],
@@ -70,9 +70,18 @@
         "configurationDefaults": {
             "[shellscript]": {
                 "alignmenthash.surroundSpace": {
-                    "colon": [ 0, 1 ],
-                    "assignment": [ -1, -1 ],
-                    "arrow":[ 1, 1 ],
+                    "colon": [
+                        0,
+                        1
+                    ],
+                    "assignment": [
+                        -1,
+                        -1
+                    ],
+                    "arrow": [
+                        1,
+                        1
+                    ],
                     "comment": 2
                 }
             }
