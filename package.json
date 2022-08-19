@@ -1,11 +1,11 @@
 {
-    "name": "better-align",
-    "displayName": "Better Align",
-    "description": "Align code without selecting them first.",
-    "version": "1.1.7",
+    "name": "better-align-hash",
+    "displayName": "Better Align #",
+    "description": "Multi languages supported version of Better Align",
+    "version": "1.2.0",
     "icon": "images/icon.png",
-    "repository": "https://github.com/WarWithinMe/better-align",
-    "publisher": "wwm",
+    "repository": "https://github.com/AntonChiu/better-align",
+    "publisher": "atch",
     "engines": {
         "vscode": "^1.5.0"
     },
@@ -13,13 +13,13 @@
         "Formatters"
     ],
     "activationEvents": [
-        "onCommand:wwm.aligncode"
+        "onCommand:atch.aligncode"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "wwm.aligncode",
+                "command": "atch.aligncode",
                 "title": "Align"
             }
         ],
@@ -27,7 +27,7 @@
             "type": "object",
             "title": "Alignment configuration",
             "properties": {
-                "alignment.operatorPadding": {
+                "alignmenthash.operatorPadding": {
                     "type": "string",
                     "enum": [
                         "left",
@@ -36,7 +36,7 @@
                     "default": "right",
                     "description": "Control where to insert space to align different length operators (e.g. aligning = += *= ...)"
                 },
-                "alignment.surroundSpace": {
+                "alignmenthash.surroundSpace": {
                     "type": "object",
                     "default": {
                         "colon": [
@@ -55,7 +55,7 @@
                     },
                     "description": "Specify how many spaces to insert around the operator."
                 },
-                "alignment.indentBase": {
+                "alignmenthash.indentBase": {
                     "type": "string",
                     "enum": [
                         "firstline",
@@ -69,7 +69,7 @@
         },
         "configurationDefaults": {
             "[shellscript]": {
-                "alignment.surroundSpace": {
+                "alignmenthash.surroundSpace": {
                     "colon": [ 0, 1 ],
                     "assignment": [ -1, -1 ],
                     "arrow":[ 1, 1 ],

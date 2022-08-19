@@ -1,3 +1,7 @@
+1.2.0
+====
+- Add `#` support for Python and Ruby. 
+
 1.1.7
 =====
 - Fix #8, '==' is interpreted as two '='.

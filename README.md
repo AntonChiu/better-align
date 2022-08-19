@@ -1,8 +1,11 @@
-# Better Align
+# Better Align \#
 
 [![Current Version](http://vsmarketplacebadge.apphb.com/version-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
 [![Install Count](http://vsmarketplacebadge.apphb.com/installs-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
 [![Rating](http://vsmarketplacebadge.apphb.com/rating-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
+
+A modified version of [Better Align](https://github.com/WarWithinMe/better-align).
+Add supports for (`#`) in Python and Ruby. 
 
 ## Features
 
@@ -35,13 +38,13 @@ There's no built-in shortcut comes with the extension, you have to add shotcuts 
 1. Open Command Palette and type `open shortcuts` to open keybinding settings
 2. Add something similar like this:
 ```
-{ "key": "ctrl+cmd+=",  "command": "wwm.aligncode",
+{ "key": "ctrl+cmd+=",  "command": "atch.aligncode",
                            "when": "editorTextFocus && !editorReadonly" }
 ```
 
 ## Extension Settings
 
-### `alignment.operatorPadding` : "left" | "right"
+### `alignmenthash.operatorPadding` : "left" | "right"
 
 Specify how assignment operator will be aligned.
 ```
@@ -58,17 +61,17 @@ this.abc  = 10;
 this.cd  += 12;
 ```
 
-### `alignment.indentBase` : "firstline" | "activeline" | "dontchange"
+### `alignmenthash.indentBase` : "firstline" | "activeline" | "dontchange"
 Specify if it use the indentation of the firstline or the line under the cursor. Below are the `activeline` effect, notice how it's different from the screenshot above.
 
 If `indentBase` is `dontchange`, better-align will only align lines with same indentation and will not modify the indentation.
 
 ![activeline effect](images/4.gif)
 
-### `alignment.surroundSpace`
+### `alignmenthash.surroundSpace`
 Default value:
 ```
-alignment.surroundSpace : {
+alignmenthash.surroundSpace : {
   "colon"      : [0, 1], // The first number specify how much space to add to the left, can be negative.
                          // The second number is how much space to the right, can be negative.
   "assignment" : [1, 1], // The same as above.

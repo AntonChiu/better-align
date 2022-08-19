@@ -139,7 +139,7 @@ export default class Formatter {
     return {
       get : function( key:any, defaultValue?:any ):any {
         if ( langConfig ) {
-          var key1 = "alignment." + key;
+          var key1 = "alignmenthash." + key;
           if ( langConfig.hasOwnProperty(key1) ) {
             return langConfig[key1];
           }
