@@ -1,8 +1,8 @@
 # Better Align \#
 
-[![Current Version](http://vsmarketplacebadge.apphb.com/version-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
+<!-- [![Current Version](http://vsmarketplacebadge.apphb.com/version-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
 [![Install Count](http://vsmarketplacebadge.apphb.com/installs-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
-[![Rating](http://vsmarketplacebadge.apphb.com/rating-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align)
+[![Rating](http://vsmarketplacebadge.apphb.com/rating-short/wwm.better-align.svg)](https://marketplace.visualstudio.com/items?itemName=wwm.better-align) -->
 
 A modified version of [Better Align](https://github.com/WarWithinMe/better-align).
 Add supports for (`#`) in Python and Ruby. 
@@ -22,19 +22,19 @@ Place your cursor at where you want your code to be aligned, and invoke the Alig
 
 Comma-first sytle:
 
-![Comma-first style](images/1.gif)
+![Comma-first style](https://github.com/AntonChiu/better-align/blob/master/images/1.gif)
 
 Trailing comment:
 
-![Trailing comment](images/2.gif)
+![Trailing comment](https://github.com/AntonChiu/better-align/blob/master/images/2.gif)
 
 Align within selection:
 
-![Select a wide range and align them all](images/3.gif)
+![Select a wide range and align them all](https://github.com/AntonChiu/better-align/blob/master/images/3.gif)
 
 Supports for (`#`) in Python
 
-![Python support](images/5.gif)
+![Python support](https://github.com/AntonChiu/better-align/blob/master/images/5.gif)
 ## Shortcuts
 
 There's no built-in shortcut comes with the extension, you have to add shotcuts by yourself:
@@ -69,7 +69,7 @@ Specify if it use the indentation of the firstline or the line under the cursor.
 
 If `indentBase` is `dontchange`, better-align will only align lines with same indentation and will not modify the indentation.
 
-![activeline effect](images/4.gif)
+![activeline effect](https://github.com/AntonChiu/better-align/blob/master/images/4.gif)
 
 ### `alignmenthash.surroundSpace`
 Default value:
