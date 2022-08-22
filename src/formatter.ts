@@ -215,7 +215,7 @@ export default class Formatter {
   {
     if(lang == "ruby")
       return "=begin".length;
-    return "*/".length;
+    return "/*".length;
   }
 
   protected block_cmmnt_end_idtf_len(lang:string) : number
@@ -223,6 +223,34 @@ export default class Formatter {
     if(lang == "ruby")
       return "=end".length;
     return "*/".length;
+  }
+
+  protected is_block_start(line:number,pos:number):boolean
+  {
+    let textline = this.editor.document.lineAt( line );
+    let languageID : string  = this.editor.document.languageId;
+    let text = textline.text;
+    let char = text.charAt(pos);
+
+    if (languageID == "python" && char == ":")
+    {
+      let after = pos+1;
+      while (after < text.length)
+      {
+        if (text.charAt(after) != " ")
+          break;
+        else
+          after++;
+      }
+      // the characters after ":" are all spaces, 
+      // so ":" is the actual end of the line as well as the beginning of the block
+      if (after == text.length)
+        return true;
+    }
+
+    if ( char == "{" || char == "(" || char == "[" )
+      return true;
+    return false;
   }
 
   protected tokenize( line:number ):LineInfo {
@@ -254,7 +282,7 @@ export default class Formatter {
         currTokenType = TokenType.Whitespace;
       } else if ( char == "\"" || char == "'" || char == "`" ) {
         currTokenType = TokenType.String;
-      } else if ( char == "{" || char == "(" || char == "[" ) {
+      } else if (this.is_block_start(line,pos)) {
         currTokenType = TokenType.Block;
       } else if ( char == "}" || char == ")" || char == "]" ) {
         currTokenType = TokenType.EndOfBlock;
